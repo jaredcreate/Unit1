@@ -1,0 +1,165 @@
+﻿/***** Session 2 ******/
+https://learn.unity.com/tutorial/introduction-to-sprite-animations
+ Find Sprite PNG
+ Change the Sprite Mode from [Single] to [Multiple]
+ Sprite Editor -> Slice Dropdown -> Automatic -> Slice Button
+     -ideal
+     -jump
+     -run
+
+ /*Blend Animation*/
+ https://www.youtube.com/watch?v=hkaysu1Z-N8
+ Create [animationControler] name it [player]
+ rightclick -> makeTransition -> Connect Idel to Run
+ rightclick -> makeTransition -> Connect Run to Idel
+
+ Create Condition/Peramitor -> Float isRunning
+
+//Creates a Animator Variable 
+Animator animator;
+
+//Player Function
+playerAnimation(h, grounded);
+
+    private void playerAnimation(float h, bool ground)
+    {
+        if (h < 0)
+        {
+            //To Triggar the animation to Flip Left
+            animator.SetBool("isRunning", true);
+        }
+        if (h>0)
+        {
+            //To Triggar the animation to Flip Right
+            animator.SetBool("isRunning", true);
+        }
+        if (h == 0)
+        {
+            animator.SetBool("isRunning", false);
+        }
+        if (ground == false)
+        {
+            //To Triggar the animation for Jumping
+            animator.SetBool("isJumping", true);
+        }
+    }
+
+/*Switch Player flipX*/
+if (h < 0)
+        {
+            //To Triggar the animation to Flip Left
+            animator.SetBool("isRunning", true);
+      ----> spriteRenderer.flipX = true;//Add this
+        }
+        if (h>0)
+        {
+            //To Triggar the animation to Flip Right
+            animator.SetBool("isRunning", true);
+      ----> spriteRenderer.flipX = false;//Add This
+        }
+
+/*Moving Platform*/
+
+Create a new Object/ Duplicate a Platform -> Rename the Platform to [Move_Platform]
+Create new Script -> Name it [platformMove]
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class platformMove : MonoBehaviour
+{
+    // Start is called before the first frame update
+    public float posX1, posX2 = 0.0f;
+    public float movespeed = 4.0f;
+    bool moveRight = true;
+
+    void Start()
+    {
+        transform.position = new Vector2(posX1, transform.position.y);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //Debug.Log("moveRight: " + moveRight);
+        if (transform.position.x >= posX2)
+        {
+            moveRight = false;
+        }
+        if (transform.position.x < posX1)
+        {
+            moveRight = true;
+        }
+        
+        if (moveRight == true)
+        {
+            transform.position = new Vector2(transform.position.x + movespeed * Time.deltaTime, transform.position.y);
+        }
+        else
+        {
+            transform.position = new Vector2(transform.position.x - movespeed * Time.deltaTime, transform.position.y);
+        }
+    }
+}
+
+/*Player Health and End Scene*/
+
+//Create an END Event for the UI Game Over
+public UnityEvent endEvent;
+
+//Create Conditons for End SECEN
+if (playerHeart > 0)
+        {
+            //Put Normal Player Movement Code in
+        }
+        else
+        {
+            playerEnd();
+            //Reload Code if you Die
+        }
+        if (playerBody2D.position.y < -20)
+        {
+            playerEnd();
+        }
+
+    private void playerEnd()
+    {
+        spriteRenderer.enabled = false;
+        endEvent.Invoke();
+    }
+
+    -> UI-> Create Canvas > Name [EndCanvas]
+    Change -> Scale with Screen Size
+    Change -> X 1200 Y 720
+
+    -> UI - Create Empty GameObject -> Child of Canvas -> Name [EndUI]
+        Change Anchor to -> Strech x Strech
+        Change Left: 0 Top:0 PosZ:0 Right:0 Bottom:0
+
+    -> UI - Text-TextMeshPro -> IMPORT TEXTMESH ESSTIOALS -> Child of Canvas -> Name [UIText]
+        Chenge Text to [Sorry you didnt make it]
+        Change Size
+        Change Bold
+        Change Unwrap
+        Change Center Align
+        Change Color
+        Change Height:0 Width:0
+
+     -> UI-> Create Image -> Child of Canvas -> Before [UIText] -> Name [UIBackground]
+        Change Anchor to -> Strech x Strech
+        Change Left: 0 Top:0 PosZ:0 Right:0 Bottom:0
+        Change Color
+        Change Alpha
+    -> PlayerContol Script in Player Object - > Inspector
+        EndEvent() /GameObject.SetActive
+        Select EndCanvas Object to True
+
+/*Strech Gaol : Reload Scence*/
+
+    if (Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.Log("R");
+            SceneManager.LoadScene("Unit 1.1.2");
+        }
+

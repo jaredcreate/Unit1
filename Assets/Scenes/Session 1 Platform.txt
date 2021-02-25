@@ -1,0 +1,75 @@
+﻿/***** Session 1******/
+**Create Scene**
+-Name the Scene "Platform Session One"
+
+**Create Main Camrea**
+-(INS)Transform -> Postion 0,0,-10
+
+-(INS)Camera -> Set Projection -> Orthographic //This is looks 2D
+
+-(INS)Camera -> Set Size -> 10
+
+-(INS)Camera -> Set Clear Flags -> Skybox
+
+-(INS)Camera -> Set Color -> Student Choose
+
+-(SCE)Toggle on 2D
+
+-(GAM)Set Aspect Ration 16:10 or 16:9 //Depends on the students screen
+
+**Create Platform**
+-(PRO)Create a New Folder under your Scene Folder "Textures"
+
+-(PRO) ASSESTS->Find Assets/BayatGames/Free Platform Game Assets/Tiles/2.5D Tiles/(Student Choose)/png/256x256
+	-Pick the Simple Square "Grass" Texture
+	-Move the texture to your Texture Folder // This is so you can orginize your Assets 
+	-Click and Drag The Texture "Grass" -> the Scene 
+
+-(INS) Add a Component [Box Collider 2D] // This is to make sure that the object can have Physics and interrate with other colliders
+
+**Player Character Part 1**
+-(PRO) ASSESTS->Find Assets/BayatGames/Free Platform Game Assets/Character/Character Source/png/4x
+	-Pick the "Body" Texture
+	-Move the texture to your Texture Folder // This is so you can orginize your Assets
+	-Click and Drag The Texture "Body" -> the Scene 
+
+-(INS) Add a Compodent [Box Collider 2D] // This is to make sure that the object can have Physics and interrate with other colliders
+	-Adjust the Box Collider Size and Ofset for Game Mencincs
+		Offset 0x,-0.25y
+		Size 2x,2y
+-(INS) Add a Compodent [Rigidbody 2D] // This is So the Character can be Affected by Gravity
+
+**Player Character Part 2** //Code
+-(PRO) Create a new Folder and name it "Scripts"
+
+-(PRO) Create a C# Script and name it "PlayerControl" and place it in the "Scripts" Folder
+
+-(SCRIPT) Create two globle Float Varibles for Movement and Jump 
+    "float moveSpeed;"
+    "float jumpSpeed;"
+
+-(SCRIPT) Creates a Global Rigidbody2D Object to store the connection  
+    "Rigidbody2D character2D;"
+
+-(SCRIPT)Makes the Connection to the Rigidbody Component of the Player Character in the [void Start()] function
+    "character2D = GetComponent<Rigidbody2D>();"
+
+-(SCRIPT)In the [void Update()] Createa a Varible to Gets -1,0,1 depending on if the Left(-1) or Right(1) key is pressed
+	"float h = Input.GetAxisRaw("Horizontal");"
+
+-(SCRIPT)Add velocity (speed) as a vector2(x,y)   
+        "character2D.velocity = new Vector2(h * moveSpeed, 0);"
+
+		TEST AND SEE THE PLAYER CHARACTER MOVE LEFT TO RIGHT
+		OBSERVE THAT THE CHARACTER DOES NOT ACELERATE WHEN FALLING
+
+-(SCRIPT)Add velocity.y (speed) to the vector2(x,y) instead of setting the y velocity to ZERO
+		"character2D.velocity = new Vector2(h * moveSpeed, character2D.velocity.y);
+		
+		TEST AND SEE THE PLAYER CHARACTER MOVE LEFT TO RIGHT
+		OBSERVE THAT THE CHARACTER DOES ACELERATE WHEN FALLING
+
+-(INS) Rigidbody2d-> Change the Gravity so the Player Character will fall and not Float down
+
+-(INS) Rigidbody2d-> Toggle Freeze Z On to prevent Rotation of the Player Character
+
