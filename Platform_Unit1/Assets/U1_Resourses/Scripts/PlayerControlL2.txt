@@ -1,0 +1,61 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerControl : MonoBehaviour
+{
+    //Makes the movement and jump Variable Editable in the Inspector if set to public
+    //Create a Variable for Movement and Jump
+    public float moveSpeed;
+    public float jumpSpeed;
+
+    //A Boolean to keep track if we are touching the Ground
+    bool grounded;
+
+    //Creates a Rigidbody
+    Rigidbody2D character2D;
+
+    void Start()
+    {
+        //makes a Connection to the Rigidbody Component of the Player Sprite
+        character2D = GetComponent<Rigidbody2D>();
+
+        //Sets a Boolean(True/False) to use to make sure we can not fly
+        grounded = false;
+    }
+
+    void Update()
+    {
+        // Gets a -1,0,1 depending on if the Left(-1) or Right(1) is pressed
+        Debug.Log(Input.GetAxisRaw("Horizontal"));
+        float h = Input.GetAxisRaw("Horizontal");
+
+        //velocity adds movement to a specified vector2(x,y)
+        character2D.velocity = new Vector2(h * moveSpeed, character2D.velocity.y);
+
+
+        //Gets the a True when the Space bar is Pressed
+        if (Input.GetButtonDown("Jump") && grounded == true)
+        {
+            character2D.velocity = new Vector2(character2D.velocity.x, jumpSpeed);
+
+            //Sets Grounded Boolean to false
+            grounded = false;
+        }
+    }
+
+    //*********************//
+    // Collision Functions //
+    //*********************//
+    //Called when an incoming collider makes contact with this object's collider.
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Checks to make sure that the tag of the object is "Floor"
+        if (collision.gameObject.tag == "Floor")
+        {
+            //Debug.Log("ON THE FLOOR");
+            grounded = true;
+        }
+    }
+}
+
