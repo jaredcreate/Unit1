@@ -8,6 +8,12 @@ TextureImporter:
   - first:
       213: 7034338576483803127
     second: Jump_1
+  - first:
+      213: 4635864396688775176
+    second: Jump_R_0
+  - first:
+      213: -8284614011251364177
+    second: Jump_R_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -47,7 +53,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -109,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jump_0
+      name: Jump_R_0
       rect:
         serializedVersion: 2
         x: 74
@@ -123,14 +129,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f63fdb7b598678760800000000000000
-      internalID: 7460046300004610927
+      spriteID: 808d38f5b16e55040800000000000000
+      internalID: 4635864396688775176
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_1
+      name: Jump_R_1
       rect:
         serializedVersion: 2
         x: 304
@@ -144,8 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ffd4217aadfe9160800000000000000
-      internalID: 7034338576483803127
+      spriteID: fae63265373270d80800000000000000
+      internalID: -8284614011251364177
       vertices: []
       indices: 
       edges: []

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1494285488183289732}
   - component: {fileID: 1494285488183289731}
   - component: {fileID: 1494285488183289729}
-  - component: {fileID: 1494285488183289730}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
@@ -48,6 +47,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -109,18 +109,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.28, y: 1.2123199}
   m_EdgeRadius: 0
---- !u!114 &1494285488183289730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494285488183289728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6291c5f75bfae74692e4fbfa7e8fc78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scenename: 
-  scene:
-    m_Handle: 0
