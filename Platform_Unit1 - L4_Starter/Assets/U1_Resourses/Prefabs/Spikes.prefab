@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 982584192205270325}
   - component: {fileID: 5129762388045576047}
   m_Layer: 0
-  m_Name: Spikes_R
+  m_Name: Spikes
   m_TagString: Damage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
